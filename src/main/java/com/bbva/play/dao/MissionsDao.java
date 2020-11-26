@@ -15,8 +15,14 @@ public class MissionsDao {
 
     private static final Logger LOGGER = Logger.getLogger(MissionsDao.class);
 
-    public List<MissionsDto> getMissons() {
+    public List<MissionsDto> getAllMissons() {
         List<MissionsEntity> missions = MissionsEntity.listAll();
+        LOGGER.info("Se obtiene información de BBDD: "+missions);
+        return Mapper.listMissionsDaoDtoToListMissionsDto(missions);
+    }
+
+    public List<MissionsDto> getSomeMissions(List<Long> id) {
+        List<MissionsEntity> missions = MissionsEntity.list("id in ?1", id);
         LOGGER.info("Se obtiene información de BBDD: "+missions);
         return Mapper.listMissionsDaoDtoToListMissionsDto(missions);
     }

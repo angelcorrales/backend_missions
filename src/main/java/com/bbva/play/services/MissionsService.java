@@ -1,5 +1,6 @@
 package com.bbva.play.services;
 
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
@@ -20,8 +21,18 @@ public class MissionsService {
     @Inject
     MissionsDao dao;
 
-    public List<MissionsDto> getMissions() {
-        List<MissionsDto> missions = dao.getMissons();
+    public List<MissionsDto> getMissions(List<String> id) {
+        List<MissionsDto> missions;
+
+        // Si se informan identificadores, buscamos por 
+        // En caso contrario, hacemos una búsqueda completa
+        if (id != null && !id.isEmpty()) {
+            List<Long> ids = new ArrayList<>();
+            id.forEach((String item) -> ids.add(Long.valueOf(item)));
+            missions = dao.getSomeMissions(ids);
+        } else {
+            missions = dao.getAllMissons();
+        }
 
         // Convertimos la divisa en simbolo
         missions.forEach((MissionsDto item) -> convertCurrencyToSymbol(item.getAmount()));

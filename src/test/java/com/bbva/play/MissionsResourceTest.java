@@ -9,11 +9,18 @@ import static io.restassured.RestAssured.given;
 public class MissionsResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
+    public void testGetMissions() {
         given()
           .when().get("/missions")
           .then()
              .statusCode(200);
     }
 
+    @Test
+    public void testGetMissions2() {
+        given()
+          .when().get("/missions?id=1")
+          .then()
+             .statusCode(200);
+    }
 }

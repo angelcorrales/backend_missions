@@ -14,6 +14,8 @@ public class MissionsDto implements Serializable {
 
     private Amount amount;
 
+    private String status;
+
     public MissionsDto() {
         super();
     }
@@ -49,4 +51,12 @@ public class MissionsDto implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

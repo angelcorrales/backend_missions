@@ -33,6 +33,7 @@ public class Mapper {
         out.setAmount(getAmount(in.getAmount(), in.getCurrency()));
         out.setDescription(in.getDescription());
         out.setImage(in.getImage());
+        out.setStatus(in.getStatus());
         return out;
     }
 

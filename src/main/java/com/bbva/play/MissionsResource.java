@@ -17,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.jboss.logging.Logger;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 @Path("/missions")
 public class MissionsResource {
@@ -37,7 +38,8 @@ public class MissionsResource {
     )
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<MissionsDto> getMissions(@QueryParam("id") List<String> id) {
+    public List<MissionsDto> getMissions(@Parameter(description = "Identificador de Mission", required = false)
+            @QueryParam("id") List<String> id) {
         LOGGER.info("Identificadores solicitados" +id);
         return service.getMissions(id);
     }
